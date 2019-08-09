@@ -34,8 +34,8 @@ function init(bundle, parent, options = {}) {
   );
 
   let myFlatSurface_III = new Surface(
-    600, /* width  */
-    900, /* height */
+    700, /* width 900 */
+    1100, /* height 1500*/
     Surface.SurfaceShape.Flat /* shape */
   );
   // Angle is measured in radians, so 3.14 (pi) puts it right behind you
@@ -45,6 +45,8 @@ function init(bundle, parent, options = {}) {
 
   myFlatSurface_III.setAngle(3.14/2, 0);
 
+  //, 3.14/30
+
   let myFlatSurface_IV = new Surface(
     600, /* width  */
     600, /* height */
@@ -52,6 +54,14 @@ function init(bundle, parent, options = {}) {
   );
 
   myFlatSurface_IV.setAngle(-3.14/2, 0);
+
+  let myFlatSurface_V = new Surface(
+    700, /* width 900 */
+    1100, /* height 1500*/
+    Surface.SurfaceShape.Flat /* shape */
+  );
+
+  myFlatSurface_V.setAngle(0, 0);
 
   // Render your app content to each surface, using the names registered in index.js
   // ( e.g. AppRegistry.registerComponent('RegisteredOne', () => ComponentOne); links the 

@@ -10,15 +10,15 @@ import {
 
 export default class MarmosetEyes extends React.Component {
   state = {
-    animatedTranslation: new Animated.ValueXY({x: 5, y: 0})
+    animatedTranslation: new Animated.Value(0)
   }
 
   turnEyesRight = () => {
     Animated.timing(
       this.state.animatedTranslation,
       {
-        toValue: {x: 8, y: 0},
-        duration: 6000,
+        toValue: 10,
+        duration: 5000,
       }
     ).start(this.turnEyesLeft)
   }
@@ -27,8 +27,8 @@ export default class MarmosetEyes extends React.Component {
     Animated.timing(
       this.state.animatedTranslation,
       {
-        toValue: {x: -5, y: 0},
-        duration: 6000,
+        toValue: 3,
+        duration: 4000,
       }
     ).start(this.turnEyesRight)
   }
@@ -40,10 +40,10 @@ export default class MarmosetEyes extends React.Component {
   render() {
     return (
       <View>
-        <Animated.Image source ={asset('eye-isolated.png')} style={{position: 'absolute', width: 700, height: 700, transform: [{translateX: this.state.animatedTranslation.x}, {translateY: 0}], opacity: 1}} />
+        <Animated.Image source ={asset('eye-isolated.png')} style={{position: 'absolute', width: 500, height: 500, transform: [{translateX: this.state.animatedTranslation}, {translateY: -10}], opacity: 1}} />
         <Image source={asset('marmoset-hand.png')} style={styles.portrait} />
         <View style={styles.button}>
-            <Text style={styles.buttonText}>View More About This Work</Text>
+            <Text style={styles.buttonText}>Learn More About This Work</Text>
         </View>
       </View>
     );
