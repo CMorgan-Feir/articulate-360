@@ -5,6 +5,7 @@ import {
   Image,
   asset,
   View,
+  Text
 } from 'react-360';
 
 export default class FlowerBug extends React.Component {
@@ -45,10 +46,12 @@ export default class FlowerBug extends React.Component {
 
   render() {
     return (
-        <View>
+        <View style={{justifyContent: 'space-between'}}>
           <Image source={asset('flower-bg-small.png')} style={styles.flower} />
           <Animated.Image source ={asset('bug.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateY: this.state.animatedTranslation.y}, {translateX: this.state.animatedTranslation.x}, { rotateZ: this.state.newRotation }], opacity: 1}} />
-          
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Learn More About This Work</Text>
+          </View>
         </View>
     );
   }
@@ -67,5 +70,16 @@ const styles = StyleSheet.create({
     height: 100,
     transform: [{translateX: 600}, {translateY: 50}],
     opacity: 1,
+  },
+  buttonText: {
+    fontSize: 30,
+    textAlign: 'center'
+  },
+  button: {
+    justifyContent: 'space-between',
+    marginTop: 10,
+    height: 50,
+    backgroundColor: '#85929E',
+    overflow: 'hidden',
   }
 });

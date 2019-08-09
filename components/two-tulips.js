@@ -4,9 +4,9 @@ import {
   View,
   asset,
   Image,
-  Animated
+  Animated,
+  Text
 } from 'react-360';
-// import Flower from './components/flower'
 
 export default class TwoTulips extends React.Component {
   state = {
@@ -17,8 +17,8 @@ export default class TwoTulips extends React.Component {
     Animated.timing(
       this.state.animatedAngle,
       {
-        toValue: 45,
-        duration: 5000,
+        toValue: 30,
+        duration: 10000,
       }
     ).start(this.rotateTulipsDown)
   }
@@ -27,8 +27,8 @@ export default class TwoTulips extends React.Component {
     Animated.timing(
       this.state.animatedAngle,
       {
-        toValue: -45,
-        duration: 5000,
+        toValue: -30,
+        duration: 10000,
       }
     ).start(this.rotateTulipsUp)
   }
@@ -40,9 +40,12 @@ export default class TwoTulips extends React.Component {
   render() {
     return (
       <View>
-        <Animated.Image source ={asset('flower-one.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateX: 195}, {translateY: -60}, {rotateZ: this.state.animatedAngle }], opacity: 1}} />
-        <Animated.Image source ={asset('flower-two.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateX: 210}, {translateY: -259}, {rotateZ: this.state.animatedAngle }]}} />
+        <Animated.Image source ={asset('flower-one.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateX: 205}, {translateY: -63}, {rotateZ: this.state.animatedAngle }], opacity: 1}} />
+        <Animated.Image source ={asset('flower-two.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateX: 95}, {translateY: -268}, {rotateZ: this.state.animatedAngle }]}} />
         <Image source={asset('two-stems.png')} style={styles.stems} />
+        <View style={styles.button}>
+            <Text style={styles.buttonText}>Learn More About This Work</Text>
+        </View>
       </View>
     );
   }
@@ -54,5 +57,16 @@ const styles = StyleSheet.create({
     height: 512,
     opacity: 1,
     transform: [{translateZ: 950}]
+  },
+  buttonText: {
+    fontSize: 30,
+    textAlign: 'center'
+  },
+  button: {
+    justifyContent: 'space-between',
+    marginTop: 10,
+    height: 50,
+    backgroundColor: '#85929E',
+    overflow: 'hidden',
   }
 });
