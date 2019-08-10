@@ -11,16 +11,11 @@ function init(bundle, parent, options = {}) {
   });
 
   // Cylinder surface that wraps all the way around (currently unused)
-  let myNewSurface = new Surface(
-    4680, /* width  */
-    600, /* height */
-    Surface.SurfaceShape.Flat /* shape */
-  );
 
   // Flat surface
   let myFlatSurface = new Surface(
-    600, /* width  */
-    600, /* height */
+    700, /* width  */
+    1100, /* height */
     Surface.SurfaceShape.Flat /* shape */
   );
   // must set the angle for it to render, this puts it right in front at the start
@@ -34,8 +29,8 @@ function init(bundle, parent, options = {}) {
   );
 
   let myFlatSurface_III = new Surface(
-    700, /* width 900 */
-    1100, /* height 1500*/
+    600, /* width 900 */
+    600, /* height 1500*/
     Surface.SurfaceShape.Flat /* shape */
   );
   // Angle is measured in radians, so 3.14 (pi) puts it right behind you
@@ -55,20 +50,12 @@ function init(bundle, parent, options = {}) {
 
   myFlatSurface_IV.setAngle(-3.14/2, 0);
 
-  let myFlatSurface_V = new Surface(
-    700, /* width 900 */
-    1100, /* height 1500*/
-    Surface.SurfaceShape.Flat /* shape */
-  );
-
-  myFlatSurface_V.setAngle(0, 0);
-
   // Render your app content to each surface, using the names registered in index.js
   // ( e.g. AppRegistry.registerComponent('RegisteredOne', () => ComponentOne); links the 
   //   ComponentOne component with the name 'RegisteredOne', and then here we can add it
   //   to a certain surface with r360.createRoot('RegisteredOne')   )
   r360.renderToSurface(
-    r360.createRoot('FlowerBug', { /* initial props */ }),
+    r360.createRoot('StillLife', { /* initial props */ }),
     // r360.getDefaultSurface()
     // myNewSurface
     myFlatSurface
@@ -81,13 +68,8 @@ function init(bundle, parent, options = {}) {
     myFlatSurface_II
   );
 
-  // r360.renderToSurface(
-  //   r360.createRoot('PortraitEyes', { /* initial props */ }),
-  //   myFlatSurface_III
-  // );
-
   r360.renderToSurface(
-    r360.createRoot('StillLife', { /* initial props */ }),
+    r360.createRoot('FlowerBug', { /* initial props */ }),
     myFlatSurface_III
   );
 
