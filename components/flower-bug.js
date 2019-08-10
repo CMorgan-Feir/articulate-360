@@ -5,8 +5,11 @@ import {
   Image,
   asset,
   View,
-  Text
+  Text,
+  VrButton,
+  NativeModules
 } from 'react-360';
+const {AudioModule} = NativeModules
 
 export default class FlowerBug extends React.Component {
     // Our component will keep track of this state
@@ -49,9 +52,22 @@ export default class FlowerBug extends React.Component {
         <View style={{justifyContent: 'space-between'}}>
           <Image source={asset('flower-bg-small.png')} style={styles.flower} />
           <Animated.Image source ={asset('bug.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateY: this.state.animatedTranslation.y}, {translateX: this.state.animatedTranslation.x}, { rotateZ: this.state.newRotation }], opacity: 1}} />
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Learn More About This Work</Text>
-          </View>
+          <VrButton onClick={() => {
+            AudioModule.playOneShot({
+              source: asset('/sounds/withoos.m4a'),
+            })
+          }}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Learn More About This Work</Text>
+            </View>
+          </VrButton>
+          {/* AudioModule.createAudio('bird', {
+            source: asset('clock.mp3'),
+            is3d: true,
+          });
+          AudioModule.play('bird', {
+            position: [3, 0, 0],
+          }); */}
         </View>
     );
   }

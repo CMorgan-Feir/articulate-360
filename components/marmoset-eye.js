@@ -5,8 +5,11 @@ import {
   asset,
   Image,
   Animated,
-  Text
+  Text,
+  VrButton,
+  NativeModules
 } from 'react-360';
+const {AudioModule} = NativeModules
 
 export default class MarmosetEyes extends React.Component {
   state = {
@@ -42,9 +45,16 @@ export default class MarmosetEyes extends React.Component {
       <View>
         <Animated.Image source ={asset('eye-isolated.png')} style={{position: 'absolute', width: 500, height: 500, transform: [{translateX: this.state.animatedTranslation}, {translateY: -10}], opacity: 1}} />
         <Image source={asset('marmoset-hand.png')} style={styles.portrait} />
-        <View style={styles.button}>
-            <Text style={styles.buttonText}>Learn More About This Work</Text>
-        </View>
+        <VrButton
+        onClick={() => {
+          AudioModule.playOneShot({
+            source: asset('/sounds/ronquillo.m4a'),
+          })
+        }}>
+          <View style={styles.button}>
+              <Text style={styles.buttonText}>Learn More About This Work</Text>
+          </View>
+        </VrButton>
       </View>
     );
   }

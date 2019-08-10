@@ -5,8 +5,11 @@ import {
   asset,
   Image,
   Animated,
-  Text
+  Text,
+  VrButton,
+  NativeModules
 } from 'react-360';
+const {AudioModule} = NativeModules
 
 export default class TwoTulips extends React.Component {
   state = {
@@ -43,9 +46,16 @@ export default class TwoTulips extends React.Component {
         <Animated.Image source ={asset('flower-one.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateX: 205}, {translateY: -63}, {rotateZ: this.state.animatedAngle }], opacity: 1}} />
         <Animated.Image source ={asset('flower-two.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateX: 95}, {translateY: -268}, {rotateZ: this.state.animatedAngle }]}} />
         <Image source={asset('two-stems.png')} style={styles.stems} />
-        <View style={styles.button}>
-            <Text style={styles.buttonText}>Learn More About This Work</Text>
-        </View>
+        <VrButton
+        onClick={() => {
+            AudioModule.playOneShot({
+              source: asset('/sounds/van-der-vinne.m4a'),
+            })
+          }}>
+          <View style={styles.button}>
+              <Text style={styles.buttonText}>Learn More About This Work</Text>
+          </View>
+        </VrButton>
       </View>
     );
   }
