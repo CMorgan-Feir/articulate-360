@@ -9,14 +9,12 @@ import {
   VrButton,
   NativeModules
 } from 'react-360';
-import { Easing } from 'react-native';
-// import console = require('console');
+
 const {AudioModule} = NativeModules
 const canvasWidth = 900*(3/4)
 const canvasHeight = 1154*(3/4)
 
 export default class StillLife extends React.Component {
-    // Our component will keep track of this state
   state = {
     animatedAngle: new Animated.Value(0),
     animatedTranslation: new Animated.ValueXY({x: 0, y: 0}),
@@ -31,7 +29,6 @@ export default class StillLife extends React.Component {
   };
 
   circleBug = () => {
-
     Animated.timing(
       this.state.littleBugCircle,
       {
@@ -42,7 +39,6 @@ export default class StillLife extends React.Component {
   }
 
   circleBugBack = () => {
-
     Animated.timing(
       this.state.littleBugCircle,
       {
@@ -186,7 +182,6 @@ export default class StillLife extends React.Component {
   }
 
   render() {
-    console.log('Bug Angle:', this.state.littleBugCircle)
     return (
         <View style={{justifyContent: 'space-between'}}>
           <Image source={asset('/still-life/still-life-background.png')} style={styles.flower} />

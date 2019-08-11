@@ -52,7 +52,10 @@ export default class FlowerBug extends React.Component {
         <View style={{justifyContent: 'space-between'}}>
           <Image source={asset('flower-bg-small.png')} style={styles.flower} />
           <Animated.Image source ={asset('bug.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateY: this.state.animatedTranslation.y}, {translateX: this.state.animatedTranslation.x}, { rotateZ: this.state.newRotation }], opacity: 1}} />
-          <VrButton onClick={() => {
+          <VrButton
+          disabled={false}
+          onClick={() => {
+            this.setState()
             AudioModule.playOneShot({
               source: asset('/sounds/withoos.m4a'),
             })
@@ -61,13 +64,6 @@ export default class FlowerBug extends React.Component {
               <Text style={styles.buttonText}>Learn More About This Work</Text>
             </View>
           </VrButton>
-          {/* AudioModule.createAudio('bird', {
-            source: asset('clock.mp3'),
-            is3d: true,
-          });
-          AudioModule.play('bird', {
-            position: [3, 0, 0],
-          }); */}
         </View>
     );
   }
