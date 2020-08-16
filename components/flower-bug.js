@@ -15,7 +15,8 @@ export default class FlowerBug extends React.Component {
     // Our component will keep track of this state
   state = {
     animatedTranslation: new Animated.ValueXY({x: 0, y: 0}),
-    newRotation: '180deg'
+    newRotation: '180deg',
+    disabled: false
   };
 
   // This method calls our helper function and begins animation
@@ -53,8 +54,11 @@ export default class FlowerBug extends React.Component {
           <Image source={asset('flower-bg-small.png')} style={styles.flower} />
           <Animated.Image source ={asset('bug.png')} style={{position: 'absolute', width: 100, height: 100, transform: [{translateY: this.state.animatedTranslation.y}, {translateX: this.state.animatedTranslation.x}, { rotateZ: this.state.newRotation }], opacity: 1}} />
           <VrButton
-          disabled={false}
+          disabled={this.state.disabled}
           onClick={() => {
+            this.setState({disabled: true})
+            setTimeout(() => this.setState({disabled: false}), 20000)
+
             this.setState()
             AudioModule.playOneShot({
               source: asset('/sounds/withoos.m4a'),

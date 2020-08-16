@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   StyleSheet,
   View,
@@ -14,6 +15,7 @@ const {AudioModule} = NativeModules
 export default class TwoTulips extends React.Component {
   state = {
     animatedAngle: new Animated.Value(0),
+    disabled: false
   }
 
   rotateTulipsUp = () => {
@@ -47,7 +49,10 @@ export default class TwoTulips extends React.Component {
         <Animated.Image source ={asset('flower-two.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateX: 95}, {translateY: -268}, {rotateZ: this.state.animatedAngle }]}} />
         <Image source={asset('two-stems.png')} style={styles.stems} />
         <VrButton
+        disabled={this.state.disabled}
         onClick={() => {
+          this.setState({disabled: true})
+            setTimeout(() => this.setState({disabled: false}), 57000)
             AudioModule.playOneShot({
               source: asset('/sounds/van-der-vinne.m4a'),
             })
@@ -59,7 +64,7 @@ export default class TwoTulips extends React.Component {
       </View>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
   stems: {

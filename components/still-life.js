@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   Animated,
   StyleSheet,
@@ -25,7 +25,8 @@ export default class StillLife extends React.Component {
     littleBugX: new Animated.Value(0.222 * canvasWidth),
     littleBugY: new Animated.Value(-0.410 * canvasHeight),
     littleBugCircle: new Animated.Value(0),
-    beePosition: new Animated.Value(0.75 * canvasWidth)
+    beePosition: new Animated.Value(0.75 * canvasWidth),
+    disabled: false
   };
 
   circleBug = () => {
@@ -201,7 +202,10 @@ export default class StillLife extends React.Component {
           <Animated.Image source ={asset('/still-life/little-chili-3.png')} style={{position: 'absolute', width: 40, height: 40, transform: [{translateY: -0.245 * canvasHeight}, {translateX: 0.455 * canvasWidth}, { rotateZ: this.state.animatedAngle }], opacity: 1}} />
           <Animated.Image source ={asset('/still-life/tulip-2.png')} style={{position: 'absolute', width: 210, height: 210, transform: [{translateY: -0.3195 * canvasHeight}, {translateX: 0.5682 * canvasWidth}, { rotateZ: this.state.animatedAngle }], opacity: 1}} />
           <VrButton
+          disabled={this.state.disabled}
           onClick={() => {
+            this.setState({disabled: true})
+            setTimeout(() => this.setState({disabled: false}), 86000)
             AudioModule.playOneShot({
               source: asset('/sounds/mignon.m4a'),
             })

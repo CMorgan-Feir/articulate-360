@@ -13,7 +13,8 @@ const {AudioModule} = NativeModules
 
 export default class MarmosetEyes extends React.Component {
   state = {
-    animatedTranslation: new Animated.Value(0)
+    animatedTranslation: new Animated.Value(0),
+    disabled: false
   }
 
   turnEyesRight = () => {
@@ -46,7 +47,10 @@ export default class MarmosetEyes extends React.Component {
         <Animated.Image source ={asset('eye-isolated.png')} style={{position: 'absolute', width: 500, height: 500, transform: [{translateX: this.state.animatedTranslation}, {translateY: -10}], opacity: 1}} />
         <Image source={asset('marmoset-hand.png')} style={styles.portrait} />
         <VrButton
+        disabled={this.state.disabled}
         onClick={() => {
+          this.setState({disabled: true})
+          setTimeout(() => this.setState({disabled: false}), 53000)
           AudioModule.playOneShot({
             source: asset('/sounds/ronquillo.m4a'),
           })
